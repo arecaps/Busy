@@ -12,6 +12,7 @@ public class Blackjack {
     public int playerScore = 0;
     public int dealerScore = 0;
     int i = 0;
+    boolean hasAnAce = false;
 
     public Blackjack() {
         deck = new Deck();
@@ -102,6 +103,7 @@ public class Blackjack {
             } else if (card.getCard().contains("Nine")) {
                 dealerScore += 9;
             } else if (card.getCard().contains("Ace")) {
+                hasAnAce = true;
                 if (dealerScore < 11) {
                     dealerScore += 11;
                 } else {
@@ -125,6 +127,12 @@ public class Blackjack {
                 dealer.add(deck.fullDeck.get(i));
                 System.out.println("Dealer chooses another card:  ");
                 getDealerScore();
+                if (hasAnAce = true) {
+                    if (dealerScore > 21) {
+                        dealerScore -= 10;
+                        hasAnAce = false;
+                    }
+                }
             }
             for (Cards card : dealer) {
                 System.out.print(card.getCard() + "\t");
