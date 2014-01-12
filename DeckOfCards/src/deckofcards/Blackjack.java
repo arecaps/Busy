@@ -52,87 +52,53 @@ public class Blackjack {
         }
     }
 
-    private void getPlayerScore() {
-        for (Cards card : player) {
+    private int getAnyScore(ArrayList<Cards> oneSide) {
+        int theScore = 0;
+        for (Cards card : oneSide) {
             if (card.getCard().contains("Two")) {
-                playerScore += 2;
+                theScore += 2;
             } else if (card.getCard().contains("Three")) {
-                playerScore += 3;
+                theScore += 3;
             } else if (card.getCard().contains("Four")) {
-                playerScore += 4;
+                theScore += 4;
             } else if (card.getCard().contains("Five")) {
-                playerScore += 5;
+                theScore += 5;
             } else if (card.getCard().contains("Six")) {
-                playerScore += 6;
+                theScore += 6;
             } else if (card.getCard().contains("Seven")) {
-                playerScore += 7;
+                theScore += 7;
             } else if (card.getCard().contains("Eight")) {
-                playerScore += 8;
+                theScore += 8;
             } else if (card.getCard().contains("Nine")) {
-                playerScore += 9;
-            } else if (card.getCard().contains("Ace")) {
-                if (playerScore < 11) {
-                    playerScore += 11;
-                } else {
-                    playerScore += 1;
-                }
-            } else {
-                playerScore += 10;
-            }
-        }
-
-    }
-
-    private void getDealerScore() {
-        dealerScore = 0;
-        for (Cards card : dealer) {
-            if (card.getCard().contains("Two")) {
-                dealerScore += 2;
-            } else if (card.getCard().contains("Three")) {
-                dealerScore += 3;
-            } else if (card.getCard().contains("Four")) {
-                dealerScore += 4;
-            } else if (card.getCard().contains("Five")) {
-                dealerScore += 5;
-            } else if (card.getCard().contains("Six")) {
-                dealerScore += 6;
-            } else if (card.getCard().contains("Seven")) {
-                dealerScore += 7;
-            } else if (card.getCard().contains("Eight")) {
-                dealerScore += 8;
-            } else if (card.getCard().contains("Nine")) {
-                dealerScore += 9;
+                theScore += 9;
             } else if (card.getCard().contains("Ace")) {
                 hasAnAce = true;
-                if (dealerScore < 11) {
-                    dealerScore += 11;
-                } else {
-                    dealerScore += 1;
-                }
+                theScore += 11;
             } else {
-                dealerScore += 10;
+                theScore += 10;
             }
         }
-
+        return theScore;
     }
 
     private void endHand() {
-        getPlayerScore();
+        playerScore = getAnyScore(player);
         System.out.println("Player score: " + playerScore);
         if (playerScore > 21) {
             System.out.println("Sorry, you busted.");
         } else {
-            getDealerScore();
+            dealerScore = getAnyScore(dealer);
             while (dealerScore < 17) {
                 dealer.add(deck.fullDeck.get(i));
                 System.out.println("Dealer chooses another card:  ");
-                getDealerScore();
+                dealerScore = getAnyScore(dealer);
                 if (hasAnAce = true) {
                     if (dealerScore > 21) {
                         dealerScore -= 10;
                         hasAnAce = false;
                     }
                 }
+                i++;
             }
             for (Cards card : dealer) {
                 System.out.print(card.getCard() + "\t");
@@ -149,4 +115,5 @@ public class Blackjack {
             }
         }
     }
+
 }
