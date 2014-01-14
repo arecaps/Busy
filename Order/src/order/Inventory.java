@@ -17,7 +17,7 @@ public class Inventory {
         Product rug = new Product("frrg", "Furry Rugs", 28.49, true);
         stock.add(rug);
 }
-    public void displayInventory (){
+    public void displayInventory (){  
         for(Product product : stock){
             System.out.println(product.toString());
         }
