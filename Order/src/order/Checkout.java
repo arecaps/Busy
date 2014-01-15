@@ -1,21 +1,21 @@
-
 package order;
 
 import java.text.NumberFormat;
 
 public class Checkout {
+
     public static final double SALES_TAX = .07;
-    
+
     public static void checkOut() {
         double orderTotal = 0;
         String lineItem;
         double tax = 0;
-        NumberFormat cash = NumberFormat.getCurrencyInstance();    
+        NumberFormat cash = NumberFormat.getCurrencyInstance();
         System.out.print("Quantity:\tProduct:\t\tPrice each:\tItem subtotal:\tTaxable:\n");
         for (LineItem item : GetItem.cart) {
             orderTotal += (item.price * item.quantity);
-            lineItem = item.quantity + "\t\t" + item.product + "\t\t$" + item.price + 
-                    "\t\t" + cash.format(item.price * item.quantity) + "\t\t";
+            lineItem = item.quantity + "\t\t" + item.product + "\t\t$" + item.price
+                    + "\t\t" + cash.format(item.price * item.quantity) + "\t\t";
             System.out.print(lineItem);
             if (item.taxable) {
                 System.out.print("Yes\n");

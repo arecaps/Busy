@@ -13,16 +13,20 @@ public class Product {
         this.price = price;
         this.taxable = taxable;
     }
-    public String getItemCode(){
+
+    public String getItemCode() {
         return itemCode;
     }
-    public String getProduct(){
+
+    public String getProduct() {
         return description;
     }
-    public double getPrice(){
+
+    public double getPrice() {
         return price;
     }
-    public boolean getTaxable(){
+
+    public boolean getTaxable() {
         return taxable;
     }
 

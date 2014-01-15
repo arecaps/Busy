@@ -1,9 +1,9 @@
-
 package order;
 
 import java.util.ArrayList;
 
 public class Inventory {
+
     public static ArrayList<Product> stock = new ArrayList<>();
 
     //put items into the inventory
@@ -16,9 +16,10 @@ public class Inventory {
         stock.add(earmuffs);
         Product rug = new Product("frrg", "Furry Rugs", 28.49, true);
         stock.add(rug);
-}
-    public void displayInventory (){  
-        for(Product product : stock){
+    }
+
+    public void displayInventory() {
+        for (Product product : stock) {
             System.out.println(product.toString());
         }
     }

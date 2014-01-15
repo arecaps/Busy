@@ -24,7 +24,7 @@ public class Order {
                     System.exit(0);
                     break;
                 case "O":
-                    new GetItem();
+                    GetItem.getItem();
                     break;
                 case "C":
                     Checkout.checkOut();

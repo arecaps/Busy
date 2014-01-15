@@ -1,16 +1,15 @@
-
 package order;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GetItem {
-    
-    public LineItem order;
+
+    public static LineItem order;
     public static ArrayList<LineItem> cart = new ArrayList<>();
-    Scanner sc = new Scanner(System.in);
-    
-    public GetItem(){
+
+    public static void getItem() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Enter the code of the product you want to order,\n"
                 + "If you dont know the product code, press any key and Enter to return to the main menu.");
         String choice = sc.next();
@@ -20,4 +19,5 @@ public class GetItem {
                 cart.add(order);
             }
         }
-    }}
+    }
+}
