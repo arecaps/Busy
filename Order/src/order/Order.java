@@ -1,14 +1,15 @@
 package order;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Order {
 
     public static Inventory inventory;
-    public static GetOrder order;
+    public static LineItem order;
     public static int quantity;
-    public static ArrayList<GetOrder> cart = new ArrayList<>();
+    public static ArrayList<LineItem> cart = new ArrayList<>();
     public static final double SALES_TAX = .07;
 
     public static void getAnOrder() {
@@ -32,7 +33,7 @@ public class Order {
             default:
                 return;
         }
-        order = new GetOrder(inventory.stock.get(i).getProduct(), inventory.stock.get(i).getPrice(), inventory.stock.get(i).getTaxable());
+        order = new LineItem(inventory.stock.get(i).getProduct(), inventory.stock.get(i).getPrice(), inventory.stock.get(i).getTaxable());
         cart.add(order);
     }
 
@@ -41,7 +42,7 @@ public class Order {
         String lineItem;
         double tax = 0;
         System.out.print("Quantity:\tProduct:\t\tPrice each:\tItem subtotal:\tTaxable:\n");
-        for (GetOrder item : cart) {
+        for (LineItem item : cart) {
             orderTotal += (item.price * item.quantity);
             lineItem = item.quantity + "\t\t" + item.product + "\t\t" + item.price + "\t\t" + (item.price * item.quantity) + "\t\t";
             System.out.print(lineItem);
@@ -51,15 +52,15 @@ public class Order {
                 System.out.print("No\n");
             }
         }
-
-        System.out.println("Your subtotal is $" + orderTotal);
-        for (GetOrder item : cart) {
+        NumberFormat cash = NumberFormat.getCurrencyInstance();
+        System.out.println("Your subtotal is " + cash.format(orderTotal));
+        for (LineItem item : cart) {
             if (item.taxable) {
                 tax += ((item.price * item.quantity) * SALES_TAX);
             }
         }
-        System.out.println("Your tax is $" + tax);
-        System.out.println("Your total is $" + (orderTotal + tax));
+        System.out.println("Your tax is " + cash.format(tax));
+        System.out.println("Your total is " + cash.format(orderTotal + tax));
     }
 
     public static void main(String[] args) {
