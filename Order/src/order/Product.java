@@ -13,6 +13,9 @@ public class Product {
         this.price = price;
         this.taxable = taxable;
     }
+    public String getItemCode(){
+        return itemCode;
+    }
     public String getProduct(){
         return description;
     }

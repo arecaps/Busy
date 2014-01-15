@@ -4,7 +4,7 @@ package order;
 import java.util.ArrayList;
 
 public class Inventory {
-    public ArrayList<Product> stock = new ArrayList<>();
+    public static ArrayList<Product> stock = new ArrayList<>();
 
     //put items into the inventory
     public Inventory() {
