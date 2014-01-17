@@ -20,7 +20,7 @@ public class Inventory {
 
     public void displayInventory() {
         for (Product product : stock) {
-            System.out.println(product.toString());
+            System.out.println(product);
         }
     }
 }
