@@ -27,11 +27,13 @@ public class MP3Player {
                             default:
                                 break;
                         }
+                        break;
                 case "L":
                     SongFile.displayList();
                     break;
                 case "P":
                     PlaySong.playSong();
+                    break;
             }
     }
     
