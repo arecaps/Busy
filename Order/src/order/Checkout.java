@@ -18,9 +18,9 @@ public class Checkout {
                     + "\t\t" + cash.format(item.price * item.quantity) + "\t\t";
             System.out.print(lineItem);
             if (item.taxable) {
-                System.out.print("Yes\n");
+                System.out.print("Yes" + System.lineSeparator());
             } else {
-                System.out.print("No\n");
+                System.out.print("No" + System.lineSeparator());
             }
         }
 

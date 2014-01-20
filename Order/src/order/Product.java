@@ -34,7 +34,7 @@ public class Product {
     public String toString() {
         String item = "Code:\t\t" + itemCode
                 + "\nDescription:\t" + description
-                + "\nPrice:\t\t" + price + "\n";
+                + "\nPrice:\t\t" + price + System.lineSeparator();
         return item;
     }
 }
