@@ -111,8 +111,9 @@ public class LinkedList<T> {
             temp = temp.getNext();
         }
         return temp.getData();
-        }
-        //Removes the first item and returns it's data.
+    }
+
+    //Removes the first item and returns it's data.
     public T remove() {
         Node<T> temp = head;
         head = temp.getNext();
@@ -149,5 +150,20 @@ public class LinkedList<T> {
             size++;
         }
         return size;
+    }
+
+    //Returns the index of the first occurence of the element.
+    public int indexOf(T data) {
+        int index = 0;
+        Node<T> temp;
+        for (temp = head; temp.getNext() != null; temp = temp.getNext()) {
+            if (temp.getData() == null) {
+                continue;
+            } else if (data.equals(temp.getData())) {
+                break;
+            }
+            index++;
+        }
+        return index;
     }
 }
