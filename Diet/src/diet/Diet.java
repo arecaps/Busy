@@ -1,4 +1,3 @@
-
 package diet;
 
 import java.util.ArrayList;

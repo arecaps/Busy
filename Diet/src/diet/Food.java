@@ -1,4 +1,3 @@
-
 package diet;
 
 public class Food implements Comparable<Food>{
