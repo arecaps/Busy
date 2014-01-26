@@ -118,7 +118,6 @@ public class LinkedList<T> {
         Node<T> temp = head;
         head = temp.getNext();
         T data = temp.getData();
-        temp = null;
         return data;
     }
 
