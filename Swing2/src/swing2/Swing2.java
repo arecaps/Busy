@@ -52,7 +52,7 @@ public class Swing2 {
             @Override
             public void mouseMoved(MouseEvent e) {
                 i++;
-                System.out.println("Mouse Moved " + i + " times");
+                System.out.println("Mouse Moved " + i + " times" + e.getLocationOnScreen());
             }
         });
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
