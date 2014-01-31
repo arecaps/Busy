@@ -44,7 +44,8 @@ public class LiteBrite extends JFrame {
         JPanel board = new JPanel();
         board.setLayout(new GridLayout(50, 50));
         addButtons(board);
-        this.add(board);
+        add(board);
+        setResizable(false);
         setVisible(true);
     }
 
