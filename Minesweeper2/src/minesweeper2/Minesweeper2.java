@@ -3,6 +3,8 @@ package minesweeper2;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.Random;
 import javax.swing.*;
@@ -58,13 +60,13 @@ public class Minesweeper2 extends JFrame {
     private void checkNeighbors(int row, int column) {
         for (int i = row - 1; i <= row + 1; i++) {
             for (int j = column - 1; j <= column + 1; j++) {
-                
+
                 if (i < 0 || i >= rows
                         || j < 0 || j >= columns
-                        || (i == row && j == column)){
+                        || (i == row && j == column)) {
                     continue;
                 }
-                if(buttons[i][j].isChecked()){
+                if (buttons[i][j].isChecked()) {
                     continue;
                 }
                 buttons[i][j].setBorderPainted(false);
@@ -103,11 +105,31 @@ public class Minesweeper2 extends JFrame {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 final MinesweeperButton button = new MinesweeperButton();
-                button.addActionListener(new ActionListener() {
+                button.addMouseListener(new MouseListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
+                    public void mouseClicked(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        if (e.getButton() == MouseEvent.BUTTON3) {
+                            button.setText("FLAG");
+                        } else if (e.getButton() == MouseEvent.BUTTON1) {
                         MinesweeperButton source = (MinesweeperButton) e.getSource();
                         checkButton(button);
+                        }
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
                     }
                 });
                 board.add(button, i, j);
