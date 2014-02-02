@@ -56,16 +56,15 @@ public class Minesweeper2 extends JFrame {
     }
 
     private void checkNeighbors(int row, int column) {
-        int checked = 0;
         for (int i = row - 1; i <= row + 1; i++) {
             for (int j = column - 1; j <= column + 1; j++) {
-                if(buttons[i][j].isChecked()){
-                    checked = 1;
-                }
+                
                 if (i < 0 || i >= rows
                         || j < 0 || j >= columns
-                        || (i == row && j == column)
-                        || checked ==1){
+                        || (i == row && j == column)){
+                    continue;
+                }
+                if(buttons[i][j].isChecked()){
                     continue;
                 }
                 buttons[i][j].setBorderPainted(false);
@@ -73,7 +72,7 @@ public class Minesweeper2 extends JFrame {
                 if (buttons[i][j].getNeighboringBombs() > 0) {
                     buttons[i][j].setText("" + buttons[i][j].getNeighboringBombs());
                 } else {
-                    checkNeighbors(row, column);
+                    checkNeighbors(i, j);
                 }
             }
 
