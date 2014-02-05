@@ -28,7 +28,7 @@ public class ComplaintDept extends JFrame {
         button.setLocation(a, b);
         x = a;
         y = b;
-        
+
     }
 
     public ComplaintDept() {
@@ -39,7 +39,7 @@ public class ComplaintDept extends JFrame {
         JPanel board = new JPanel();
         board.setLayout(null);
         final JButton button = new JButton("Press to complain");
-        button.setSize(new Dimension(125, 75));        
+        button.setSize(new Dimension(125, 75));
         board.addMouseMotionListener(new MouseMotionListener() {
 
             @Override
@@ -50,9 +50,8 @@ public class ComplaintDept extends JFrame {
             public void mouseMoved(MouseEvent e) {
                 int a = e.getX();
                 int b = e.getY();
-                System.out.println(a + ", " + b);
-                if(((a > x - 30 && a < x + 125 )|| (a < x + 155 && a > x)) 
-                        && ((b > y - 30 && b < y  + 50)|| (b < y + 105 && b > y))) {
+                if ((a > x - 30 && a < x + 155)
+                        && (b > y - 30 && b < y + 105)) {
                     runAway(button, a, b);
                 }
 
