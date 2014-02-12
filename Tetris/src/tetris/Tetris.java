@@ -5,19 +5,18 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class Tetris extends JFrame {
+public class Tetris extends JFrame implements KeyListener {
 
     public ArrayList<Piece> pieces = new ArrayList<>();
-    private Color color= new Color(238, 238, 238);
+    private Color color = new Color(238, 238, 238);
     JPanel board;
     int shape = 5;
     int j = 0;
-    
 
     public void dropPiece() {
         while (shape < 300) {
-            for(Piece piece : pieces){
-                if(piece.getBackground().equals(Color.red)){
+            for (Piece piece : pieces) {
+                if (piece.getBackground().equals(Color.red)) {
                     piece.setBackground(color);
                 }
             }
@@ -39,6 +38,7 @@ public class Tetris extends JFrame {
     public void startGame() {
         Thread animationThread = new Thread(
                 new Runnable() {
+                    @Override
                     public void run() {
                         dropPiece();
                     }
@@ -51,6 +51,7 @@ public class Tetris extends JFrame {
         for (int i = 0; i < 320; i++) {
             Piece piece = new Piece();
             board.add(piece);
+            piece.addKeyListener(this);
             pieces.add(piece);
 
         }
@@ -64,6 +65,7 @@ public class Tetris extends JFrame {
         JLabel title = new JLabel("TETRIS", JLabel.CENTER);
         title.setFont(new Font("Helvetica", Font.PLAIN, 24));
         add(title, BorderLayout.NORTH);
+        addKeyListener(this);
         JPanel controls = new JPanel();
         Controls controlPanel = new Controls(Tetris.this, controls);
         controlPanel.startButton();
@@ -71,14 +73,33 @@ public class Tetris extends JFrame {
         board = new JPanel();
         board.setLayout(new GridLayout(20, 16, 1, 1));
         addButtons(board);
-        
         add(board);
+        
         setResizable(false);
         setVisible(true);
     }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            shape -= 1;
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            shape += 1;
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    @Override
+    public void keyReleased(KeyEvent e) {}
 
     public static void main(String[] args) {
 
         new Tetris();
     }
+
 }

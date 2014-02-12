@@ -22,6 +22,7 @@ public class Controls {
                 game.startGame();
             }
         });
+        start.addKeyListener(game);
         panel.add(start);
     }
 }
