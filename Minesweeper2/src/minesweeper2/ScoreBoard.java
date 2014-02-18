@@ -37,6 +37,9 @@ public class ScoreBoard {
     public int getScore() {
         return score;
     }
+    public int[] getScoreList() {
+        return scores;
+    }
 
     public void fillArray() throws IOException {
         try {
@@ -65,6 +68,5 @@ public class ScoreBoard {
         } finally {
             out.close();
         }
-        Minesweeper2.displayHigh(scores);
     }
 }

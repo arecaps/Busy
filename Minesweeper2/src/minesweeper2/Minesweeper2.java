@@ -20,6 +20,7 @@ public class Minesweeper2 extends JFrame {
     JLabel time;
     Thread timer;
     private int seconds;
+    ScoreBoard sb;
     
     public void displayHigh(int[] scoreList){
         String list = "The 10 highest scores ..." + System.lineSeparator();
@@ -28,6 +29,7 @@ public class Minesweeper2 extends JFrame {
             }
         JOptionPane.showMessageDialog(this, list);
     }
+    
     private void showAll() {
         for(int i = 0; i < rows; i++) {
             for(int j = 0; j < columns; j++) {
@@ -98,12 +100,13 @@ public class Minesweeper2 extends JFrame {
             if (uncovered == (rows * columns) - bombs) {
                 gameOver = true;
                 try {
-                    new ScoreBoard(seconds);
+                    sb = new ScoreBoard(seconds);
                 } catch (IOException ex) {
                     return;
                 }
                 JOptionPane.showMessageDialog(this, "You Win! Your time was " + seconds + " seconds.");
             }
+            displayHigh(sb.getScoreList());
         }
     }
     
@@ -118,8 +121,6 @@ public class Minesweeper2 extends JFrame {
                     public void mousePressed(MouseEvent e) {
                         if (!gameOver) {
                             if (timer == null) {
-                                //timer = new Thread(new SecondsTimer(Minesweeper2.this));
-                                //timer.start();
                                 timer = new Thread(new Runnable() {
                                     @Override
                                     public void run() {
