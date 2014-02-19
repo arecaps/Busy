@@ -10,10 +10,13 @@ public class ScoreBoard {
     BufferedWriter out = null;
     protected int[] scores = new int[10];
     int score;
+    String level;
+    String file;
 
-    public ScoreBoard(int score) throws IOException {
+    public ScoreBoard(int score, String level) throws IOException {
         boolean higher = false;
         this.score = score;
+        this.level = level;
         fillArray();
         for (int i = 0; i < 10; i++) {
             int x = scores[i];
@@ -42,8 +45,19 @@ public class ScoreBoard {
     }
 
     public void fillArray() throws IOException {
+        switch(level){
+            case "med":
+                file = "text/medScores.txt";
+                break;
+            case "hard":
+                file = "text/hardScores.txt";
+                break;
+            default:
+                file = "text/easyScores.txt";
+                break;
+        }
         try {
-            in = new BufferedReader(new FileReader("text/mineSweeperScores.txt"));
+            in = new BufferedReader(new FileReader(file));
             int j = 0;
             String line;
             while ((line = in.readLine()) != null) {
@@ -60,7 +74,7 @@ public class ScoreBoard {
 
     public void writeScores() throws IOException {
         try {
-            out = new BufferedWriter(new FileWriter("text/mineSweeperScores.txt"));
+            out = new BufferedWriter(new FileWriter(file));
 
             for (int i = 0; i < 10; i++) {
                 out.write(scores[i] + System.lineSeparator());
